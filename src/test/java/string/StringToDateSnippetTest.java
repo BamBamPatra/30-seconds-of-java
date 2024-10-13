@@ -39,7 +39,7 @@ class StringToDateSnippetTest {
    * Tests for {@link StringToDateSnippet#stringToDate(String, String)}.
    */
   @Test
-  void testStringToDate() throws ParseException {
+  void SDT() throws ParseException {
     var calendar = Calendar.getInstance();
     calendar.setTime(StringToDateSnippet.stringToDate("2017-08-18", "yyyy-MM-dd"));
     assertEquals(2017, calendar.get(Calendar.YEAR));

@@ -424,7 +424,7 @@ public class SieveOfEratosthenesSnippet {
     }
 
     for (int i = 2; i * i <= n; i++) {
-      if (isPrime[i] == true) {
+      if (isPrime[i]) {
         for (int j = i * i; j <= n; j += i) {
           isPrime[j] = false;
         }
@@ -1181,7 +1181,7 @@ public class ReadFileSnippet {
 ```java
 public class DiceThrow {
 
-  private static Random random = new Random();
+  private static final Random random = new Random();
 
   /**
   * Enum for standardized sided dice (4,6,8,10,12 and 20).
@@ -1244,7 +1244,7 @@ public class EloRatingSnippet {
    */
   public static double calculateMatchRating(double firstPlayerRating, double secondPlayerRating,
       double result) {
-    double ratingDiff = ((secondPlayerRating - firstPlayerRating) * 1.0) / BASE;
+    double ratingDiff = ((secondPlayerRating - firstPlayerRating)) / BASE;
     double logisticDiff = Math.pow(10, ratingDiff);
     double firstPlayerExpectedScore = 1.0 / (1 + logisticDiff);
     double firstPlayerActualScore = result;
@@ -1597,42 +1597,43 @@ public class PrimeNumberSnippet {
 ```java
 public class RandomNumber {
 
-  private RandomNumber() {}
-
-  private static Random random = new Random();
-
-  /**
-  * Return a random number between two given numbers.
-  *
-  * @param start Starting point to find the random number
-  * @param end Ending point to find the random number
-  * @return Number denoting the random number generated
-  */
-  public static <T extends Number> Number getRandomNumber(T start, T end) {
-
-    if ((start instanceof Byte && end instanceof Byte)) {
-      return (byte) (start.byteValue() + random.nextInt(end.byteValue() - start.byteValue() + 1));
-    } else if ((start instanceof Byte && end instanceof Byte) 
-            || (start instanceof Short && end instanceof Short)) {
-      return (short) (start.shortValue() 
-              + random.nextInt(end.shortValue() - start.shortValue() + 1));
-    } else if ((start instanceof Integer && end instanceof Integer)) {
-      return (int) (start.intValue() 
-              + random.nextInt(end.intValue() - start.intValue() + 1));
-    } else if (start instanceof Long && end instanceof Long) {
-      return (long) (start.longValue() 
-              + random.nextLong(end.longValue() - start.longValue() + 1));
-    } else if (start instanceof Float && end instanceof Float) {
-      return (float) (start.floatValue() 
-              + random.nextFloat(end.floatValue() - start.floatValue() + 1));
-    } else if (start instanceof Double && end instanceof Double) {
-      return (double) (start.doubleValue() 
-              + random.nextDouble(end.doubleValue() - start.doubleValue() + 1));
-    } else {
-      throw new IllegalArgumentException("Invalid Numbers As Arguments " 
-              + start.getClass() + " and " + end.getClass());
+    private RandomNumber() {
     }
-  }
+
+    private static final Random random = new Random();
+
+    /**
+     * Return a random number between two given numbers.
+     *
+     * @param start Starting point to find the random number
+     * @param end Ending point to find the random number
+     * @return Number denoting the random number generated
+     */
+    public static <T extends Number> Number getRandomNumber(T start, T end) {
+
+        if ((start instanceof Byte && end instanceof Byte)) {
+            return (byte) (start.byteValue() + random.nextInt(end.byteValue() - start.byteValue() + 1));
+        } else if ((start instanceof Byte && end instanceof Byte)
+                || (start instanceof Short && end instanceof Short)) {
+            return (short) (start.shortValue()
+                    + random.nextInt(end.shortValue() - start.shortValue() + 1));
+        } else if ((start instanceof Integer && end instanceof Integer)) {
+            return (int) (start.intValue()
+                    + random.nextInt(end.intValue() - start.intValue() + 1));
+        } else if (start instanceof Long && end instanceof Long) {
+            return (long) (start.longValue()
+                    + random.nextLong(end.longValue() - start.longValue() + 1));
+        } else if (start instanceof Float && end instanceof Float) {
+            return (float) (start.floatValue()
+                    + random.nextFloat(end.floatValue() - start.floatValue() + 1));
+        } else if (start instanceof Double && end instanceof Double) {
+            return (double) (start.doubleValue()
+                    + random.nextDouble(end.doubleValue() - start.doubleValue() + 1));
+        } else {
+            throw new IllegalArgumentException("Invalid Numbers As Arguments "
+                    + start.getClass() + " and " + end.getClass());
+        }
+    }
 }
 ```
 
